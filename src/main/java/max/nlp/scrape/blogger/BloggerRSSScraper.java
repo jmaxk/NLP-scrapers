@@ -1,10 +1,5 @@
 package max.nlp.scrape.blogger;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Iterator;
 import java.util.List;
 
 import max.nlp.dal.blog.blogger.BlogAuthorProfile;
@@ -12,15 +7,19 @@ import max.nlp.dal.blog.blogger.BloggerBlog;
 import max.nlp.dal.blog.blogger.BloggerDB;
 import max.nlp.dal.blog.blogger.BloggerPost;
 
-import org.apache.commons.io.FileUtils;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import com.mongodb.DBCursor;
 
+/**
+ * 
+ * Scrapes blogs by looking at the RSS feed for the blog
+ * @author jmaxk
+ *
+ */
 public class BloggerRSSScraper {
 
 	public static void main(String[] args) {
@@ -47,6 +46,11 @@ public class BloggerRSSScraper {
 		}
 	}
 
+	/**
+	 * Scrapes a blog 
+	 * @param blogURL
+	 * @return
+	 */
 	public BloggerBlog scrapeBlog(String blogURL) {
 		String url = blogURL + "feeds/posts/default";
 		try {
@@ -83,7 +87,4 @@ public class BloggerRSSScraper {
 		return null;
 	}
 
-	public String extractTitle(Document doc) {
-		return null;
-	}
 }

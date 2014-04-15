@@ -3,17 +3,12 @@ package max.nlp.scrape.wiktionary;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.List;
 
 import max.nlp.scrape.AbstractScraper;
 
 import org.apache.log4j.Logger;
 
 import de.tudarmstadt.ukp.jwktl.JWKTL;
-import de.tudarmstadt.ukp.jwktl.api.IWikiString;
-import de.tudarmstadt.ukp.jwktl.api.IWiktionaryEdition;
-import de.tudarmstadt.ukp.jwktl.api.IWiktionaryEntry;
-import de.tudarmstadt.ukp.jwktl.api.util.IWiktionaryIterator;
 
 public class WiktionaryScraper extends AbstractScraper {
 

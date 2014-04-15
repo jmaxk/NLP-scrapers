@@ -4,15 +4,11 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import max.nlp.scrape.AbstractScraper;
-import max.nlp.util.StateConverter;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -21,20 +17,26 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 
+/**
+ * Scrape blogs from the blogger search pages
+ * @author jmaxk
+ *
+ */
 public class SearchPageScraper extends AbstractScraper {
 	private PrintWriter w = null;
 
 	public static void main(String[] args) {
-		Map<String, String> allStates = StateConverter.getStates();
-		for (Entry<String, String>  e: allStates.entrySet()){
-			String abbr = e.getValue();
-			System.out.println(abbr);
-			String startingURL = "http://www.blogger.com/profile-find.g?t=l&loc0=US&loc1=" + abbr;
-			SearchPageScraper p = new SearchPageScraper("/home/max/proj/bloggerscraper/search/" + abbr + ".txt");
-			p.scrape(startingURL, 0);
-		}
+		//Example usage for scraping blogs where loc0=USA and loc1=TX
+		//loc0 is usually a country, and loc1 is usually a state, although the search queries are not  very well docuemtned 
+		String startingURL = "http://www.blogger.com/profile-find.g?t=l&loc0=US&loc1=TX";
+		SearchPageScraper p = new SearchPageScraper("/home/max/proj/bloggerscraper/search/TX.txt");
+		p.scrape(startingURL, 0);
 	}
 
+	/**
+	 * Writes the URLS from the search page to an output file 
+	 * @param outputFile
+	 */
 	public SearchPageScraper(String outputFile) {
 		try {
 			w = new PrintWriter(new FileWriter(new File(outputFile)));
@@ -43,6 +45,10 @@ public class SearchPageScraper extends AbstractScraper {
 		}
 	}
 
+	/**
+	 * @param url, the starting url
+	 * @param pageCount, the number of esarch pages to scrape 
+	 */
 	public void scrape(String url, int pageCount) {
 		if (pageCount >= 10)
 			return;

@@ -16,12 +16,16 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import com.mongodb.DBCursor;
-import com.mongodb.DBObject;
-
+/**
+ * Scrapes blogger profile 
+ * @author jmaxk
+ *
+ */
 public class BloggerProfileScraper extends AbstractScraper {
 	private final static Logger log = Logger
 			.getLogger(BloggerProfileScraper.class.getName());
+	
+	//Less than this and you get banned 
 	private final static int timeout = 6000;
 
 	public static BlogAuthorProfile scrapeProfile(String profileURL) {
@@ -71,6 +75,10 @@ public class BloggerProfileScraper extends AbstractScraper {
 		return profile;
 	}
 
+	/**
+	 * Scrapes profiles from a file, and stores them in the db
+	 * @param pFile, a file with one profile per line 
+	 */
 	public static void scrapeOnlyProfiles(String pFile) {
 
 		try {
@@ -97,31 +105,11 @@ public class BloggerProfileScraper extends AbstractScraper {
 		}
 	}
 
-	public static void updateProfilesWithNoBlogs() {
-		BloggerDB db = BloggerDB.getInstance();
-		DBCursor itr = db.getProfileIterator();
-		while (itr.hasNext()) {
-			BlogAuthorProfile profile = new BlogAuthorProfile(
-					(DBObject) itr.next());
-			if (profile.getBlogs().isEmpty()) {
-				BlogAuthorProfile newProfile = scrapeProfile(profile.getUrl());
-				if (newProfile != null) {
-					db.updateProfile(profile, newProfile);
-					System.out.println("updated " + profile.getUrl() + " ("
-							+ profile.getBlogs().size() + ")");
-				}
-			}
-		}
-	}
+
 
 	public static void main(String[] args) {
-		// 4970
 		 String pFile = "/home/max/proj/bloggerscraper/old/uniqBlogs.txt";
 		 scrapeOnlyProfiles(pFile);
 
-//		BlogAuthorProfile profile = scrapeProfile("http://www.blogger.com/profile/17331772870845292365");
-//		System.out.println(profile);
-
-		// updateProfilesWithNoBlogs();
 	}
 }
