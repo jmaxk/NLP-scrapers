@@ -98,6 +98,10 @@ public class ScrapingConfiguration {
 		return (String) table.get("wiktionary.rootURL");
 	}
 	
+	public String getBloggerAPIKey(){
+		return (String) table.get("blogger.apiKey");
+	}
+	
 	public String getWiktionaryDumpFile(String language){
 		return getResourcesDirectory() + "wiktionary/" + language + "-dump.xml";
 	}

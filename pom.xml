@@ -3,18 +3,18 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>max.nlp</groupId>
 	<artifactId>scraper</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2</version>
 	<name>Scraping library for NLP</name>
 
 	<dependencies>
-	
+
 
 		<dependency>
 			<groupId>de.tudarmstadt.ukp.jwktl</groupId>
 			<artifactId>jwktl</artifactId>
 			<version>1.0.0</version>
 		</dependency>
-		
+
 
 
 		<!-- log4j -->
@@ -52,31 +52,31 @@
 			<version>1.7.1</version>
 		</dependency>
 
-	
+
 		<dependency>
 			<groupId>com.spinn3r</groupId>
 			<artifactId>api</artifactId>
 			<version>3.4.05</version>
 		</dependency>
 
-<dependency>
-	<groupId>org.json</groupId>
-	<artifactId>json</artifactId>
-	<version>20131018</version>
-</dependency>
-            
-		
 		<dependency>
-			<groupId>max.nlp</groupId>
-			<artifactId>dal</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20131018</version>
 		</dependency>
 
 
-	<dependency>
+		<dependency>
+			<groupId>max.nlp</groupId>
+			<artifactId>dal</artifactId>
+			<version>0.0.2</version>
+		</dependency>
+
+
+		<dependency>
 			<groupId>max.nlp</groupId>
 			<artifactId>util</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.2</version>
 		</dependency>
 	</dependencies>
 </project>

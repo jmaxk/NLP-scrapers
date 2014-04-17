@@ -8,6 +8,7 @@ import max.nlp.dal.blog.blogger.BlogAuthorProfile;
 import max.nlp.dal.blog.blogger.BloggerBlog;
 import max.nlp.dal.blog.blogger.BloggerDB;
 import max.nlp.dal.blog.blogger.BloggerPost;
+import max.nlp.scrape.ScrapingConfiguration;
 
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.http.HttpTransport;
@@ -26,10 +27,12 @@ import com.mongodb.DBCursor;
 
 public class BloggerAPIScraper {
 
+	
+	private static final String key = ScrapingConfiguration.getInstance().getBloggerAPIKey();
+
 	private static BloggerAPIScraper instance = null;
 	private static Blogger blogger = null;
 	private static final HttpTransport HTTP_TRANSPORT = new NetHttpTransport();
-	private static final String key = "AIzaSyC9w-jCLgKxnJ8LyYHdBWTpfIVYD0d8b1s";
 	private static final JsonFactory jsonFactory = new JacksonFactory();
 	private static BloggerDB db = BloggerDB.getInstance();
 
